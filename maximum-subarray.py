@@ -31,7 +31,7 @@ def maxSubArray_DC(nums):
   maxsum[0] = nums[0]
   max_global_sum = nums[0]
   for i in range(1, len(nums)):
-    maxsum[i] = max(maxsum[i], nums[i] + maxsum[i-1])
+    maxsum[i] = max(nums[i], nums[i] + maxsum[i-1])
     max_global_sum = max(max_global_sum, maxsum[i])
   return max_global_sum
 
@@ -51,10 +51,10 @@ import unittest
 
 class TestMaximumSubarray(unittest.TestCase):
   def test_max_sub(self):
-    self.assertEqual(maxSubArray([-2]), -2)
-    self.assertEqual(maxSubArray([-2, 1]), 1)
-    self.assertEqual(maxSubArray([2, 3, -1, -20, 5, 10]), 15)
-    self.assertEqual(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]), 6)
+    self.assertEqual(maxSubArray_DC([-2]), -2)
+    self.assertEqual(maxSubArray_DC([-2, 1]), 1)
+    self.assertEqual(maxSubArray_DC([2, 3, -1, -20, 5, 10]), 15)
+    self.assertEqual(maxSubArray_DC([-2,1,-3,4,-1,2,1,-5,4]), 6)
 
 
 if __name__ == '__main__':
