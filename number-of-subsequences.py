@@ -17,7 +17,7 @@ def numMatchingSubseq(S, words):
   :type words: List[str]
   :rtype: int
   """
-  waiting = collections.defaultdict(list)  # dict default keyvalue is list []
+  waiting = collections.defaultdict(list)  # set dict default keyvalue is list []
   for w in words:
     waiting[w[0]].append(iter(w[1:]))     # append subsequent iterator
 
