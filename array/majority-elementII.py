@@ -59,9 +59,10 @@ import unittest
 
 class TestMajorityElementsII(unittest.TestCase):
   def test_majority_elementsII(self):
-    self.assertEqual(majorityElement_v2([0,0,0]), [0])
     self.assertEqual(majorityElement_v2([1,2]), [1,2])
+    self.assertEqual(majorityElement_v2([0,0,0]), [0])
     self.assertEqual(majorityElement_v2([3,2,3]), [3])
+    self.assertEqual(majorityElement_v2([1,2,3,1]), [1])
     self.assertEqual(majorityElement_v2([1,1,1,3,3,2,2,2]), [1,2])
 
 
