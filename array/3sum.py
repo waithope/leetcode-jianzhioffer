@@ -27,7 +27,7 @@ def threeSum(nums):
 	nums.sort()
 	res = []
 	for i in range(n-2):
-		if i > 0 and nums[i] == nums[i-1]:
+		if i > 0 and nums[i] == nums[i-1]:            # skip duplicates
 			continue
 		j = i + 1
 		k = n - 1
