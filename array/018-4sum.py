@@ -22,7 +22,7 @@ def fourSum(nums, target):
   :rtype: List[List[int]]
   """
   if len(nums) < 4:
-    return
+    return []
 
   nums.sort()
   res = []
@@ -53,6 +53,7 @@ import unittest
 
 class Test_4Sum(unittest.TestCase):
   def test_4sum(self):
+    self.assertEqual(fourSum([], 0), [])
     self.assertEqual(fourSum([1, 0, -1, 0, -2, 2],0),
                      [[-2, -1, 1, 2],[-2, 0, 0, 2],[-1, 0, 0, 1]])
 
