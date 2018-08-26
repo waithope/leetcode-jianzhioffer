@@ -28,7 +28,7 @@ def combinationSum(candidates, target):
   :type target: int
   :rtype: List[List[int]]
   """
-
+  # Depth first search
   def backtrack(nums, res, path, remain, start):
     if remain < 0:
       return
