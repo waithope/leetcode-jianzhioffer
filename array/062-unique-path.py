@@ -26,19 +26,20 @@ def uniquePaths(m, n):
   :rtype: int
   """
   ## time complexity O(n**2) space complexity O(m*n)
-  #path = [[1]*n for i in range(m)]
-  #
-  #for i in range(1, m):
-  #    for j in range(1, n):
-  #        path[i][j] = path[i-1][j] + path[i][j-1]
-  #return path[m-1][n-1]
+  path = [[1]*n for i in range(m)]
+
+  for i in range(1, m):
+     for j in range(1, n):
+         path[i][j] = path[i-1][j] + path[i][j-1]
+  return path[m-1][n-1]
 
   ## time complexity O(n**2) space complexity O(n)
-  dp = [1]*n
-  for i in range(1, m):
-      for j in range(1, n):
-          dp[j] = dp[j-1] + dp[j]
-  return dp[-1]
+  ## this method exists some errors, albeit passed tests
+  # dp = [1]*n
+  # for i in range(1, m):
+  #     for j in range(1, n):
+  #         dp[j] = dp[j-1] + dp[j]
+  # return dp[-1]
 
 
 import unittest
