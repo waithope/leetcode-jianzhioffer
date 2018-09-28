@@ -40,9 +40,21 @@ def wordPattern(pattern, str):
   #    d2[ch] = d2.get(ch, []) + [i]
   #return sorted(d1.values()) == sorted(d2.values())
 
+  # words = str.split(' ')
+  # return len(set(zip(pattern, words))) == len(set(pattern)) == len(set(words)) \
+  #         and len(pattern) == len(words)
+
   words = str.split(' ')
-  return len(set(zip(pattern, words))) == len(set(pattern)) == len(set(words)) \
-          and len(pattern) == len(words)
+  if len(pattern) != len(words):
+    return False
+
+  d1, d2 = {}, {}
+  for i in range(len(pattern)):
+    if d1.get(pattern[i], 0) != d2.get(words[i], 0):
+      return False
+    d1[pattern[i]] = i + 1
+    d2[words[i]] = i + 1
+  return True
 
 
 import unittest
