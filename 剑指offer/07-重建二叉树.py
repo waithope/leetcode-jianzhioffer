@@ -19,8 +19,10 @@ def reConstructBinaryTree(preorder, inorder):
     if not isinstance(preorder, list) \
         or not isinstance(inorder, list) \
         or len(preorder) != len(inorder):
-        return
+        return None
 
+    if set(preorder) != set(inorder):
+        return None
     root = createTreeRecursively(preorder, inorder)
     return root
 
