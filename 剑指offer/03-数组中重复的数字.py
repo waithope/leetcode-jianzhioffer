@@ -23,6 +23,8 @@ def duplicate1(numbers):
             if numbers[i] == numbers[numbers[i]]:
                 return True, numbers[i]
             else:
+                # python赋值表达式计算顺序先等式右边，后左边，
+                # 如果直接交换number[i], numbers[number[i]]程序结果不能达到预期
                 index = numbers[i]
                 numbers[i], numbers[index] = numbers[index], numbers[i]
     return False, None
