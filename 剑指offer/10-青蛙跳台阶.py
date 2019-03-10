@@ -5,7 +5,7 @@
 一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个n级的台阶总共有多少种跳法。
 '''
 
-def jump_floor(n):
+def jumpFloor(n):
     '''
     青蛙跳台阶实际上就是斐波那契数列，为什么呢？
     假设我们把n级台阶时的跳法看成n的函数，当n>2时，第一次跳一级台阶，后面剩下的
@@ -31,9 +31,9 @@ import unittest
 
 class Test_Jump_Floor(unittest.TestCase):
     def test_jump_floor(self):
-        self.assertEqual(jump_floor(3), 3)
-        self.assertEqual(jump_floor(4), 5)
-        self.assertEqual(jump_floor(99), 354224848179261915075)
+        self.assertEqual(jumpFloor(3), 3)
+        self.assertEqual(jumpFloor(4), 5)
+        self.assertEqual(jumpFloor(99), 354224848179261915075)
 
 if __name__ == '__main__':
     unittest.main()

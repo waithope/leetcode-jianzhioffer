@@ -45,6 +45,7 @@ class TestFindMinimum(unittest.TestCase):
   def test_find_minimum(self):
     self.assertEqual(findMin([1]), 1)
     self.assertEqual(findMin([3,1,2]), 1)
+    self.assertEqual(findMin([1,0,1,1,1]), 0)
     self.assertEqual(findMin([3,4,5,1,2]), 1)
     self.assertEqual(findMin([4,5,6,7,0,1,2]), 0)
     self.assertEqual(findMin([3,4,5,6,7,8,9,0,1,2]), 0)
