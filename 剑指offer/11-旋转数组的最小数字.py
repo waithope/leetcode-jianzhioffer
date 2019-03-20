@@ -10,7 +10,7 @@
 def findMinInRotatedArray(nums):
     '''
     类似书中的思路
-    最坏情况时间复杂度为O(n)
+    由于数组中可能存在重复的元素，因此，最坏情况时间复杂度为O(n)
     '''
     def findMinInOrder(arr):
         result = arr[0]
