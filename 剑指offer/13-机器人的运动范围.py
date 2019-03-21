@@ -10,6 +10,7 @@
 
 def movingCount(threshold, rows, cols):
     '''
+    需要一个矩阵保存已经到达过的格子的状态，False为未到达，True未已到达
     '''
     def sumDigit(x):
         sum_ = 0
