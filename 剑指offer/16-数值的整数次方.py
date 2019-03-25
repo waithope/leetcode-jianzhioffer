@@ -9,5 +9,45 @@
 
 def Power(base, exponent):
     '''
+    提示：需要注意输入的指数(exponent)小于1的情况，也就是exponent为零、负数情况
     '''
-    
+    def powerWithUnsignedExponent(base, exponent):
+        if exponent == 0:
+            return 1
+        if exponent == 1:
+            return base
+
+        res = powerWithUnsignedExponent(base, exponent // 2)
+        res *= res
+        if (exponent % 2) != 0:
+            res *= base
+        return res
+
+    if not isinstance(exponent, int) or not isinstance:
+        raise TypeError('Inapropriate argument type')
+
+    try:
+        res = powerWithUnsignedExponent(base, abs(exponent))
+        if exponent < 0:
+            res = 1 / res
+    except ZeroDivisionError:
+        print('Error: base is zero')
+    else:
+        return res
+
+
+import unittest
+
+class TestPower(unittest.TestCase):
+    def test_power(self):
+        self.assertEqual(Power(2, 3), 8)
+        self.assertEqual(Power(-2, 3), -8)
+        self.assertEqual(Power(2, -3), 0.125)
+        self.assertEqual(Power(2, 0), 1)
+        self.assertEqual(Power(0, 0), 1)
+        self.assertEqual(Power(0, 4), 0)
+        self.assertEqual(Power(0, -4), None)
+
+
+if __name__ == '__main__':
+    unittest.main()
