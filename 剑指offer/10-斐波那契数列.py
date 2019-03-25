@@ -17,6 +17,9 @@ def fibonacci(n):
     将中间结果进行保存，避免重复计算
     时间：O(n)
     '''
+    if not isinstance(n, int) or n < 0:
+        return
+
     result = [0, 1]
     if n < 2:
         return result[n]
@@ -70,6 +73,8 @@ class Test_Fibonacci(unittest.TestCase):
         self.assertEqual(fibonacci(1), 1)
         self.assertEqual(fibonacci(5), 5)
         self.assertEqual(fibonacci(38), 39088169)
+        self.assertEqual(fibonacci_matrix(0), 0)
+        self.assertEqual(fibonacci_matrix(1), 1)
         self.assertEqual(fibonacci_matrix(100), 354224848179261915075)
 
 if __name__ == '__main__':
