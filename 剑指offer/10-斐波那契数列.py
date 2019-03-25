@@ -57,7 +57,7 @@ def fibonacci_matrix(n):
         if n % 2 != 0:
             multiply(F, M)
 
-    if not isinstance(n, int):
+    if not isinstance(n, int) or n < 0:
         return
     if n == 0:
         return 0
