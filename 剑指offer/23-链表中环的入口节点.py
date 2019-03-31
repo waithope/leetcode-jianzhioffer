@@ -136,8 +136,8 @@ def test5():
 
 
 if __name__ == '__main__':
-    # test1()        # The expected value should be None
-    # test2()        # The expected value should be 1
-    # test3()        # The expected value should be 3
-    # test4()        # The expected value should be 1
-    # test5()        # The expected value should be 5
+    test1()        # The expected value should be None
+    test2()        # The expected value should be 1
+    test3()        # The expected value should be 3
+    test4()        # The expected value should be 1
+    test5()        # The expected value should be 5
