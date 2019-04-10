@@ -40,7 +40,7 @@ def isPopOrder(pushList, popList):
         auxStack.pop()
         nextPop += 1
 
-    if nextPop == len(popList):
+    if nextPop == len(popList) and len(auxStack) == 0:
         isPossible = True
     return isPossible
 
