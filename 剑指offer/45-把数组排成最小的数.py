@@ -32,7 +32,7 @@ def printMinNumber(nums):
 
         ab = a + b
         ba = b + a
-        if ab < ba:        #字符串比较，防止大数溢出，字符串比较只要错配就立刻返回
+        if ab < ba:        #为了防止大数溢出，采用字符串比较，字符串比较只要错配就立刻返回
             return -1
         elif ab == ba:
             return 0
