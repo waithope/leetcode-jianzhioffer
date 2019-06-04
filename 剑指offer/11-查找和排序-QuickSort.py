@@ -1,8 +1,8 @@
 import random
 
 def partition(nums, start, end):
-    if not isinstance(nums, list) or len(nums) <= 0 \
-        or start < 0 or end >= len(nums):
+    if (not isinstance(nums, list) or len(nums) <= 0
+        or start < 0 or end >= len(nums)):
         return -1
 
     index = random.randint(start, end)
