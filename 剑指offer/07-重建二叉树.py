@@ -6,6 +6,13 @@
 假如输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列
 {1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并输出
 它的头节点。
+          1
+       /     \
+      2       3
+     /       / \
+    4       5   6
+     \         /
+      7       8
 '''
 
 class TreeNode(object):
@@ -16,9 +23,9 @@ class TreeNode(object):
 
 def reConstructBinaryTree(preorder, inorder):
     # 检查输入序列的有效性
-    if not isinstance(preorder, list) \
-        or not isinstance(inorder, list) \
-        or len(preorder) != len(inorder):
+    if (not isinstance(preorder, list)
+        or not isinstance(inorder, list)
+        or len(preorder) != len(inorder)):
         return None
 
     if set(preorder) != set(inorder):
