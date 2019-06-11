@@ -21,7 +21,7 @@ def lowestCommonAncestor_BST(root, node1, node2):
     '''
     if (not isinstance(root, BinaryTreeNode)
         or not isinstance(node1, BinaryTreeNode)
-        or not isinstance(node1, BinaryTreeNode)):
+        or not isinstance(node2, BinaryTreeNode)):
         return None
 
     p1, p2 = node1, node2
@@ -46,7 +46,7 @@ def lowestCommonAncestor_HasParentPointer(root, node1, node2):
     '''
     if (not isinstance(root, BinaryTreeNode)
         or not isinstance(node1, BinaryTreeNode)
-        or not isinstance(node1, BinaryTreeNode)):
+        or not isinstance(node2, BinaryTreeNode)):
         return None
 
     visited = {}
@@ -67,8 +67,8 @@ def lowestCommonAncestor_HasParentPointer(root, node1, node2):
 
 def lowestCommonAncestor_OrdinaryTree(root, node1, node2):
     '''
-    思路：利用深度遍历搜索DFS分别找到从根节点到达这两个节点的路径，然后对比这两条
-    路径，找到的最后一个公共节点就是这两个节点的最近公共祖先。
+    思路：利用深度优先遍历搜索DFS分别找到从根节点到达这两个节点的路径，然后
+    对比这两条路径，找到的最后一个公共节点就是这两个节点的最近公共祖先。
     时间复杂度：O(n)
     '''
     def findPath(root, node, path):
@@ -86,7 +86,7 @@ def lowestCommonAncestor_OrdinaryTree(root, node1, node2):
 
     if (not isinstance(root, BinaryTreeNode)
         or not isinstance(node1, BinaryTreeNode)
-        or not isinstance(node1, BinaryTreeNode)):
+        or not isinstance(node2, BinaryTreeNode)):
         return None
 
     first, second = [], []
@@ -102,6 +102,55 @@ def lowestCommonAncestor_OrdinaryTree(root, node1, node2):
             return first[i - 1]
     return first[-1] if len(first) < len(second) else second[-1]
 
+
+def lowestCommonAncestor_Tarjan(root, node1, node2):
+    '''
+    思路：tarjan算法是最近公共祖先的离线算法，可以批量查询（多次查询），但需要
+    提前获取查询对，这也是这个算法的缺陷之一。该算法主要是基于并查集和深度优先搜索
+    方法实现的。
+    并查集：https://blog.csdn.net/liujian20150808/article/details/50848646
+    Tarjan: https://blog.csdn.net/weixin_42001089/article/details/83590686
+    时间复杂度O(n+q)，q为查询对的个数
+    '''
+    def find(x):
+        if x != pre[x]:
+            return find(pre[x])
+        return x
+
+    def tarjan(node, p, q):
+        visited[node] = True
+        if node.pLeft is not None:
+            res = tarjan(node.pLeft, p, q)
+            if res is not None:
+                return res
+            pre[node.pLeft] = node
+        if node.pRight is not None:
+            res = tarjan(node.pRight, p, q)
+            if res is not None:
+                return res
+            pre[node.pRight] = node
+        if node == p and visited[q]:
+            return find(q)
+        if node == q and visited[p]:
+            return find(p)
+
+    def depthFirstSearch(node):
+        if node is not None:
+            pre[node] = node
+            visited[node] = False
+            depthFirstSearch(node.pLeft)
+            depthFirstSearch(node.pRight)
+
+    if (not isinstance(root, BinaryTreeNode)
+        or not isinstance(node1, BinaryTreeNode)
+        or not isinstance(node2, BinaryTreeNode)):
+        return None
+
+    visited, pre = {}, {}
+    depthFirstSearch(root)
+    if node1 not in visited or node2 not in visited:
+        return None
+    return tarjan(root, node1, node2)
 
 
 '''
@@ -347,16 +396,102 @@ def test9():
         print('Test9 FAILED.')
 
 
+#最近公共祖先的tarjan离线算法测试用例
+#            8
+#        6      10
+#       5 7    9  11
+def test10():
+    A1 = BinaryTreeNode(8)
+    A2 = BinaryTreeNode(6)
+    A3 = BinaryTreeNode(10)
+    A4 = BinaryTreeNode(5)
+    A5 = BinaryTreeNode(7)
+    A6 = BinaryTreeNode(9)
+    A7 = BinaryTreeNode(11)
+
+    A1.pLeft, A1.pRight = A2, A3
+    A2.pLeft, A2.pRight = A4, A5
+    A3.pLeft, A3.pRight = A6, A7
+
+    node = lowestCommonAncestor_Tarjan(A1, A2, A7)
+    if node == A1:
+        print('Test10 passed.')
+    else:
+        print('Test10 FAILED.')
+
+
+#           1
+#          /
+#         2
+#        /
+#       3
+#      /
+#     4
+#    /
+#   5
+def test11():
+    A1 = BinaryTreeNode(1)
+    A2 = BinaryTreeNode(2)
+    A3 = BinaryTreeNode(3)
+    A4 = BinaryTreeNode(4)
+    A5 = BinaryTreeNode(5)
+
+    A1.pLeft = A2
+    A2.pLeft = A3
+    A3.pLeft = A4
+    A4.pLeft = A5
+
+    node = lowestCommonAncestor_Tarjan(A1, A4, A5)
+    if node == A4:
+        print('Test11 passed.')
+    else:
+        print('Test11 FAILED.')
+
+# 当要查询的节点不在树中
+#           1
+#          /
+#         2
+#        /
+#       3
+#      /
+#     4
+#    /
+#   5
+def test12():
+    A1 = BinaryTreeNode(1)
+    A2 = BinaryTreeNode(2)
+    A3 = BinaryTreeNode(3)
+    A4 = BinaryTreeNode(4)
+    A5 = BinaryTreeNode(5)
+    A6 = BinaryTreeNode(6)
+
+    A1.pLeft = A2
+    A2.pLeft = A3
+    A3.pLeft = A4
+    A4.pLeft = A5
+
+    node = lowestCommonAncestor_Tarjan(A1, A4, A6)
+    if node == None:
+        print('Test12 passed.')
+    else:
+        print('Test12 FAILED.')
+
+
+
 if __name__ == '__main__':
     print('当树是二叉搜索树时的测试情况：')
     test1()
     test2()
     test3()
-    print('当树带有父节点信息的测试情况：')
+    print('当树带有父节点信息时的测试情况：')
     test4()
     test5()
     test6()
-    print('当树为普通二叉树时：')
+    print('当树为普通二叉树时的测试情况：')
     test7()
     test8()
     test9()
+    print('Tarjan离线算法测试情况：')
+    test10()
+    test11()
+    test12()
