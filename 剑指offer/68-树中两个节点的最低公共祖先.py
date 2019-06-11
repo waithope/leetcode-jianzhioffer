@@ -69,6 +69,7 @@ def lowestCommonAncestor_OrdinaryTree(root, node1, node2):
     '''
     思路：利用深度遍历搜索DFS分别找到从根节点到达这两个节点的路径，然后对比这两条
     路径，找到的最后一个公共节点就是这两个节点的最近公共祖先。
+    时间复杂度：O(n)
     '''
     def findPath(root, node, path):
         if root is None:
