@@ -49,7 +49,7 @@ def hasSubtree(root1, root2):
     if root1 is not None and root2 is not None:
         if equal(root1.val, root2.val):
             result = isSubStructure(root1, root2)
-        if  not result:
+        if not result:
             result = hasSubtree(root1.pLeft, root2)
         if not result:
             result = hasSubtree(root1.pRight, root2)
