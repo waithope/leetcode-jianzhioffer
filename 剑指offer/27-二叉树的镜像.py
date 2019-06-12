@@ -9,6 +9,18 @@ class BinaryTreeNode(object):
         self.val = val
         self.pLeft = pLeft
         self.pRight = pRight
+
+                   8
+               /       \
+              6         10
+            /   \     /    \
+           5     7   9      11
+
+                   8
+               /       \
+              10        6
+            /   \     /    \
+           11    9   7      5
 '''
 
 class BinaryTreeNode(object):
