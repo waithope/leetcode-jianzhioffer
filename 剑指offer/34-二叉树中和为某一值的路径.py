@@ -55,7 +55,7 @@ def findPath(root, target):
         current -= node.val
         path.pop()
 
-    if root is None:
+    if not isinstance(root, BinaryTreeNode) or root is None:
         return
 
     path, current = [], 0
