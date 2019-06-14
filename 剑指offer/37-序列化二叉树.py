@@ -21,6 +21,9 @@ class BinaryTreeNode(object):
 
 
 def serilization(root):
+    '''
+    将二叉树序列化为字符串，每个节点的值用','连接，当节点为None时用字符'$'代替。
+    '''
     if root is None:
         return '$,'
 
@@ -32,19 +35,20 @@ def deserilization(list_of_chars):
     if not isinstance(list_of_chars, list) or len(list_of_chars) <= 0:
         return
 
-    node = list_of_chars[0]
-    if node == '$':
-        node = None
-    else:
-        node = BinaryTreeNode(int(node))
+    serialize = iter(list_of_chars)
 
-    list_of_chars.pop(0)
+    def buildTree():
+        node = next(serialize)
+        if node == '$':
+            node = None
+        else:
+            node = BinaryTreeNode(int(node))
 
-    if node is not None:
-        node.pLeft = deserilization(list_of_chars)
-        node.pRight = deserilization(list_of_chars)
-
-    return node
+        if node is not None:
+            node.pLeft = buildTree()
+            node.pRight = buildTree()
+        return node
+    return buildTree()
 
 
 '''
