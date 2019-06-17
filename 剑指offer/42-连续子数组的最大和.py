@@ -6,7 +6,7 @@
 求所有子数组的和的最大值。要求时间复杂度为O(n)
 '''
 
-
+import sys
 def maxSubarray1(nums):
     '''
     思路：我们用一个变量记录连续子数组的最大和，一个变量记录每个阶段的累加和。
@@ -18,7 +18,7 @@ def maxSubarray1(nums):
     if not isinstance(nums, list) or len(nums) <= 0:
         return
 
-    maxSum = -(2**32)
+    maxSum = -sys.maxsize
     curSum = 0
     for num in nums:
         curSum += num
