@@ -21,8 +21,10 @@ def printMinNumber(nums):
 　　 2. XXXab
 　　　   显然如果ab<ba，abXXX<baXXX
 　　 3. aXXXb
-　　　   我们将中间部分看成c,则有acb.如果ab<ba已知,需证明acb<bca。假设a,c,b的位数
-        分别是m,n,l（个/十/百），若acb>bca，则a*10^m+c*10^n+b>b*10^l+c*10^n+a，
+        反证法：p --> q 与 非q --> 非p
+　　　   我们将中间部分看成c,则有acb.如果ab<ba已知,需证明acb<bca。假设a,c,b在高位
+        时的10的幂数分别分别是m,n,l（如abc为{325,32,3}时，a在高位时，m=3；b在高位
+        时，n=4；c在高位时，l=5），若acb>bca，则a*10^m+c*10^n+b>b*10^l+c*10^n+a，
         两边同时减c*10^n，可以得到a*10^m+b>b*10^l+a 即ab>ba和已知矛盾。由此可证acb<bca
     '''
 
