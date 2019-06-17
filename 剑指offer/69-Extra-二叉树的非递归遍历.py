@@ -33,6 +33,9 @@ def inorderWithoutRecursion(root):
 
 
 def preorderWithoutRecursion(root):
+    '''
+    前序遍历，与中序遍历思路相同。
+    '''
     if not isinstance(root, BinaryTreeNode) or root is None:
         return
 
