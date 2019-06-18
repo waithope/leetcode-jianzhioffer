@@ -25,12 +25,10 @@ def lastRemaining_linkedList(n, m):
 
     head = LinkedList(0)
     pre = head
-    i = 1
-    while i < n:
+    for i in range(1, n):
         node = LinkedList(i)
         pre.next = node
         pre = node
-        i += 1
     pre.next = head
 
     node = head
