@@ -59,7 +59,7 @@ def blackAndWhite():
     n, m = list(map(int, input_str.strip().split(' ')))
     input_str = input('请输入涂白操作的左下角右上角坐标：')
     rect1 = list(map(int, input_str.strip().split(' ')))
-    input_str = input('请输入涂白操作的左下角右上角坐标：')
+    input_str = input('请输入涂黑操作的左下角右上角坐标：')
     rect2 = list(map(int, input_str.strip().split(' ')))
 
     whites, blacks = 0, 0

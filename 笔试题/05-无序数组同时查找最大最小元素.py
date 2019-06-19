@@ -30,7 +30,9 @@ def findMaxAndMin(nums):
         index = 1
 
     while index < size - 1:
+        # 0.5n次比较
         if nums[index] < nums[index + 1]:
+            # 0.5n * 2次比较
             minNum = min(minNum, nums[index])
             maxNum = max(maxNum, nums[index + 1])
         else:
