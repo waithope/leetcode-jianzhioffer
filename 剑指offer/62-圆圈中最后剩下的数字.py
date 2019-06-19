@@ -40,6 +40,20 @@ def lastRemaining_linkedList(n, m):
         node = pre.next
     return node.val
 
+def lastRemaining_formula(n, m):
+    '''
+    约瑟夫环的公式：
+    f(n, m) = 0                   (n = 1)
+    f(n, m) = [f(n-1, m) +m] % n  (n > 1)
+    '''
+    if (not isinstance(n, int) or n < 0
+        or not isinstance(m, int) or m <=0):
+        return -1
+
+    last = 0
+    for i in range(2, n + 1):
+        last = (last + m) % i
+    return last
 
 import unittest
 
@@ -51,6 +65,12 @@ class TestLastRemaining(unittest.TestCase):
         self.assertEqual(lastRemaining_linkedList(6,6), 3)
         self.assertEqual(lastRemaining_linkedList(0,0), -1)
         self.assertEqual(lastRemaining_linkedList(4000,997), 1027)
+        self.assertEqual(lastRemaining_formula(5,3), 3)
+        self.assertEqual(lastRemaining_formula(5,2), 2)
+        self.assertEqual(lastRemaining_formula(6,7), 4)
+        self.assertEqual(lastRemaining_formula(6,6), 3)
+        self.assertEqual(lastRemaining_formula(0,0), -1)
+        self.assertEqual(lastRemaining_formula(4000,997), 1027)
 
 
 if __name__ == '__main__':
