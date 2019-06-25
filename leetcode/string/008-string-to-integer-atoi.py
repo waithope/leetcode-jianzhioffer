@@ -45,28 +45,28 @@ Explanation: The number "-91283472332" is out of the range of a 32-bit signed in
              Thefore INT_MIN (−231) is returned.
 '''
 
-def myAtoi(self, s: str) -> int:
+def myAtoi(s: str) -> int:
     def strToInt(chars, minus=False):
-        intMax = 2147483647
-        intMin = -2147483648
+        intMax = (1 << 31) - 1
+        intMin = -(1 << 31)
         if len(chars) == 0:
-            return
+            return 0
         num, sign = 0, 0
         sign = -1 if minus else 1
         for c in chars:
             if c >= '0' and c <= '9':
-                num = num * 10 + sign * (ord(c) - ord('0'))
+                num = num * 10 + sign * int(c)
             else: break
-        if sign:
+        if num > 0:
             return min(num, intMax)
         else:
             return max(num, intMin)
 
-    if not isinstance(s, str) or len(s) == 0:
+    if not isinstance(s, str):
         return
 
     chars = list(s.strip())
-    if not chars:
+    if len(chars) == 0:
         return 0
     elif chars[0] == '-':
         return strToInt(chars[1:], minus=True)
