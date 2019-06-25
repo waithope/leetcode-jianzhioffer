@@ -47,5 +47,6 @@ def minDistance(word1: str, word2: str) -> int:
             if word1[i - 1] == word2[j - 1]:
                 table[i][j] = table[i - 1][j - 1]
             else:
+                # 分别对应替换、增加、删除一个字符
                 table[i][j] = min(table[i - 1][j - 1], table[i][j - 1], table[i - 1][j]) + 1
     return table[-1][-1]
