@@ -3,7 +3,7 @@
 ==========================================
 There are two sorted arrays nums1 and nums2 of size m and n respectively.
 
-Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+Find the median of the two sorted arrays. The overall run time complexity should be O(log(m+n)).
 
 You may assume nums1 and nums2 cannot be both empty.
 
@@ -23,6 +23,9 @@ The median is (2 + 3)/2 = 2.5
 
 
 def findMedianSortedArrays(nums1: List[int], nums2: List[int]):
+    '''
+    思路参考博客：https://windliang.cc/2018/07/18/leetCode-4-Median-of-Two-Sorted-Arrays/
+    '''
     def findKth(a, b, k):
         # 如果a为空的话，之间返回b中的第k小的元素
         if not a:
