@@ -1,3 +1,4 @@
+import unittest
 '''
 You are given an n x n 2D matrix representing an image.
 Rotate the image by 90 degrees (clockwise).
@@ -73,7 +74,6 @@ def rotate(matrix):
     return matrix
 
 
-import unittest
 class TestRotateImage(unittest.TestCase):
     def test_rotate_image(self):
         self.assertEqual(rotate([[1, 2, 3], [4, 5, 6], [7, 8, 9]]), [

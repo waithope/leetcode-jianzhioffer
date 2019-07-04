@@ -1,3 +1,4 @@
+import unittest
 '''
            Remove Element
 ===================================
@@ -17,30 +18,30 @@ Given nums = [0,1,2,2,3,0,4,2], val = 2,
 Your function should return length = 5
 '''
 
+
 def removeElement(nums, val):
-  """
-  :type nums: List[int]
-  :type val: int
-  :rtype: int
-  """
+    """
+    :type nums: List[int]
+    :type val: int
+    :rtype: int
+    """
 
-  n = len(nums)
-  tail = 0
-  for i in range(n):
-    if nums[i] != val:
-      nums[tail] = nums[i]
-      tail += 1
-  return nums[:tail]
+    n = len(nums)
+    tail = 0
+    for i in range(n):
+        if nums[i] != val:
+            nums[tail] = nums[i]
+            tail += 1
+    return nums[:tail]
 
-
-import unittest
 
 class TestRemoveElement(unittest.TestCase):
-  def test_remove_element(self):
-    self.assertEqual(removeElement([0,1,2], 0), [1,2])
-    self.assertEqual(removeElement([3,2,2,3], 3), [2,2])
-    self.assertEqual(removeElement([0,1,2,2,3,0,4,2], 2), [0,1,3,0,4])
+    def test_remove_element(self):
+        self.assertEqual(removeElement([0, 1, 2], 0), [1, 2])
+        self.assertEqual(removeElement([3, 2, 2, 3], 3), [2, 2])
+        self.assertEqual(removeElement(
+            [0, 1, 2, 2, 3, 0, 4, 2], 2), [0, 1, 3, 0, 4])
 
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()

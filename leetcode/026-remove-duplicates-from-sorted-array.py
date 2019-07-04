@@ -1,3 +1,4 @@
+import unittest
 '''
   Remove Duplicates from Sorted Array
 =========================================
@@ -19,29 +20,29 @@ being modified to 0, 1, 2, 3, and 4 respectively.
 It doesn't matter what values are set beyond the returned length.
 '''
 
-def removeDuplicates(nums):
-  """
-  :type nums: List[int]
-  :rtype: int
-  """
-  if nums == []:
-    return 0
-  tail = 0
-  for i in range(1, len(nums)):
-    if nums[i] == nums[i-1]:
-      continue
-    else:
-      tail += 1
-      nums[tail] = nums[i]
-  return tail+1
 
-import unittest
+def removeDuplicates(nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    if nums == []:
+        return 0
+    tail = 0
+    for i in range(1, len(nums)):
+        if nums[i] == nums[i-1]:
+            continue
+        else:
+            tail += 1
+            nums[tail] = nums[i]
+    return tail+1
+
 
 class TestRemoveDuplicates(unittest.TestCase):
-  def test_remove_duplicates(self):
-    self.assertEqual(removeDuplicates([1,1,2]), 2)
-    self.assertEqual(removeDuplicates([0,0,1,1,1,2,2,3,3,4]), 5)
+    def test_remove_duplicates(self):
+        self.assertEqual(removeDuplicates([1, 1, 2]), 2)
+        self.assertEqual(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]), 5)
 
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()

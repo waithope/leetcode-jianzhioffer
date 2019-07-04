@@ -1,3 +1,4 @@
+import unittest
 '''
         Next Permutation
 ==================================
@@ -46,46 +47,45 @@ Therefore, we need to place those numbers in ascending order to
 get their smallest permutation
 '''
 
+
 def nextPermutation(nums):
-  """
-  :type nums: List[int]
-  :rtype: void Do not return anything, modify nums in-place instead.
-  """
-  def reverse(start):
-    end = len(nums) - 1
-    while start < end:
-      nums[start], nums[end] = nums[end], nums[start]
-      start += 1
-      end -= 1
+    """
+    :type nums: List[int]
+    :rtype: void Do not return anything, modify nums in-place instead.
+    """
+    def reverse(start):
+        end = len(nums) - 1
+        while start < end:
+            nums[start], nums[end] = nums[end], nums[start]
+            start += 1
+            end -= 1
 
-  if not nums:
-    return []
+    if not nums:
+        return []
 
-  i = len(nums) - 2
-  while i >= 0 and nums[i+1] <= nums[i]:
-    i -= 1
+    i = len(nums) - 2
+    while i >= 0 and nums[i+1] <= nums[i]:
+        i -= 1
 
-  j = len(nums) - 1
-  while j >= 0 and nums[j] <= nums[i]:
-    j -= 1
+    j = len(nums) - 1
+    while j >= 0 and nums[j] <= nums[i]:
+        j -= 1
 
-  if i >= 0:
-    nums[i], nums[j] = nums[j], nums[i]
-    reverse(i+1)
-  else:
-    reverse(0)
-  return nums
+    if i >= 0:
+        nums[i], nums[j] = nums[j], nums[i]
+        reverse(i+1)
+    else:
+        reverse(0)
+    return nums
 
-
-import unittest
 
 class TestNextPermutation(unittest.TestCase):
-  def test_next_permutation(self):
-    self.assertEqual(nextPermutation([1,2,3]), [1,3,2])
-    self.assertEqual(nextPermutation([3,2,1]), [1,2,3])
-    self.assertEqual(nextPermutation([1,1,5]), [1,5,1])
-    self.assertEqual(nextPermutation([1,4,5,3,2]), [1,5,2,3,4])
+    def test_next_permutation(self):
+        self.assertEqual(nextPermutation([1, 2, 3]), [1, 3, 2])
+        self.assertEqual(nextPermutation([3, 2, 1]), [1, 2, 3])
+        self.assertEqual(nextPermutation([1, 1, 5]), [1, 5, 1])
+        self.assertEqual(nextPermutation([1, 4, 5, 3, 2]), [1, 5, 2, 3, 4])
 
 
 if __name__ == '__main__':
-  unittest.main()
+    unittest.main()
