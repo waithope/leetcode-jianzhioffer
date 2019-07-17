@@ -43,6 +43,26 @@ def findKthNode(pRoot, k):
     return findKthNodeCore(pRoot, k)
 
 
+def findKthNode_Iteratively(root, k):
+    if (not isinstance(root, BinaryTreeNode) or root is None
+        or not isinstance(k, int) or k <= 0):
+        return
+
+    stack = []
+    node = root
+    while len(stack) != 0 or node is not None:
+        while node is not None:
+            stack.append(node)
+            node = node.pLeft
+        if len(stack) != 0:
+            node = stack.pop()
+            k -= 1
+            if k == 0:
+                return node
+            node = node.pRight
+    return None
+
+
 '''
 Test Code Here
 '''
@@ -55,7 +75,7 @@ def printTree(root):
     printTree(root.pRight)
 
 def test(pRoot, k, expected):
-    node = findKthNode(pRoot, k)
+    node = findKthNode_Iteratively(pRoot, k)
     if node is None:
         print(None)
     elif node.val == expected:
