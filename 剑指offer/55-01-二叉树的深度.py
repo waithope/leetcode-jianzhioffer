@@ -31,6 +31,31 @@ def treeDepth(pRoot):
 
     return treeDepthCore(pRoot)
 
+import queue
+def treeDepth_Iteratively(root):
+    if not isinstance(root, BinaryTreeNode) or root is None:
+        return 0
+
+    queueTree = queue.Queue()
+    queueTree.put(root)
+    currentLevel, nextLevel = 1, 0
+    depth = 0
+    while not queueTree.empty():
+        root = queueTree.get()
+        currentLevel -= 1
+        if root.pLeft is not None:
+            queueTree.put(root.pLeft)
+            nextLevel += 1
+        if root.pRight is not None:
+            queueTree.put(root.pRight)
+            nextLevel += 1
+
+        if currentLevel == 0:
+            depth += 1
+            currentLevel = nextLevel
+            nextLevel = 0
+    return depth
+
 
 '''
 Test Code Here
@@ -56,7 +81,7 @@ def test1():
     A3.pRight = A6
     A5.pLeft = A7
 
-    depth = treeDepth(A1)
+    depth = treeDepth_Iteratively(A1)
     if depth == 4:
         print('Test1 Passed.')
     else:
@@ -84,7 +109,7 @@ def test2():
     A3.pRight = A4
     A4.pRight = A5
 
-    depth = treeDepth(A1)
+    depth = treeDepth_Iteratively(A1)
     if depth == 5:
         print('Test2 Passed.')
     else:
@@ -95,7 +120,7 @@ def test2():
 def test3():
     A1 = BinaryTreeNode(1)
 
-    depth = treeDepth(A1)
+    depth = treeDepth_Iteratively(A1)
     if depth == 1:
         print('Test3 Passed.')
     else:
