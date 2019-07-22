@@ -58,6 +58,39 @@ def findFirstCommonNode(pHead1, pHead2):
     return pListCommonNode
 
 
+def findFirstCommonNode_Replicate(head1, head2):
+    if (not isinstance(head1, ListNode) or head1 is None
+        or not isinstance(head2, ListNode) or head2 is None):
+        return None
+
+    def getListLength(head):
+        length = 0
+        node = head
+        while node is not None:
+            length += 1
+            node = node.pNext
+        return length
+
+    lengthOfHead1 = getListLength(head1)
+    lengthOfHead2 = getListLength(head2)
+    diff = lengthOfHead1 - lengthOfHead2
+    pListHeadLong, pListHeadShort = head1, head2
+    if diff < 0:
+        pListHeadShort = head1
+        pListHeadLong = head2
+        diff = lengthOfHead2 - lengthOfHead1
+
+    for i in range(diff):
+        pListHeadLong = pListHeadLong.pNext
+
+    while (pListHeadLong is not None and pListHeadShort is not None
+           and pListHeadLong != pListHeadShort):
+           pListHeadLong = pListHeadLong.pNext
+           pListHeadShort = pListHeadShort.pNext
+
+    return pListHeadLong
+
+
 '''
 Test Code Here
 '''
@@ -87,7 +120,7 @@ def test1():
     p5.pNext = p6
     p6.pNext = p7
 
-    node = findFirstCommonNode(p1, p4)
+    node = findFirstCommonNode_Replicate(p1, p4)
     if p6 == node:
         print('Test1 is passed')
     else:
@@ -111,7 +144,7 @@ def test2():
     p5.pNext = p6
     p6.pNext = p7
 
-    node = findFirstCommonNode(p1, p5)
+    node = findFirstCommonNode_Replicate(p1, p5)
     if node is None:
         print('Test2 is passed')
     else:
@@ -136,7 +169,7 @@ def test3():
     p5.pNext = p6
     p6.pNext = p7
 
-    node = findFirstCommonNode(p1, p5)
+    node = findFirstCommonNode_Replicate(p1, p5)
     if node == p7:
         print('Test3 is passed')
     else:
@@ -157,7 +190,7 @@ def test4():
     p3.pNext = p4
     p4.pNext = p5
 
-    node = findFirstCommonNode(p1, p1)
+    node = findFirstCommonNode_Replicate(p1, p1)
     if node == p1:
         print('Test4 is passed')
     else:
