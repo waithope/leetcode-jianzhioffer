@@ -59,7 +59,7 @@ class Solution:
             count += 1
             nextNode = head.next
             if count % k == 0:
-                begin = reverse(begin, head.next)
+                begin = reverse(begin, nextNode)
             head = nextNode
         return dummyHead.next
 
