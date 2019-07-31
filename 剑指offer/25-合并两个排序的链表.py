@@ -32,6 +32,25 @@ def mergeList(head1, head2):
     return pMergedHead
 
 
+def mergeList_iteratively(head1, head2):
+    dummyHead = ListNode(0)
+    current = dummyHead
+    while head1 is not None and head2 is not None:
+        if head1.val <= head2.val:
+            current.pNext = head1
+            head1 = head1.pNext
+            current = current.pNext
+        else:
+            current.pNext = head2
+            head2 = head2.pNext
+            current = current.pNext
+    if head1 is not None:
+        current.pNext = head1
+    if head2 is not None:
+        current.pNext = head2
+    return dummyHead.pNext
+
+
 '''
 Test Code Here
 '''
@@ -57,7 +76,7 @@ def test1():
     printList(p1)
     print("The second list is: ")
     printList(p2)
-    pMergedHead = mergeList(p1, p2)
+    pMergedHead = mergeList_iteratively(p1, p2)
     print('The Merged List is: ')
     printList(pMergedHead)
 
@@ -76,7 +95,7 @@ def test2():
     printList(p1)
     print("The second list is: ")
     printList(p2)
-    pMergedHead = mergeList(p1, p2)
+    pMergedHead = mergeList_iteratively(p1, p2)
     print('The Merged List is: ')
     printList(pMergedHead)
 
@@ -87,7 +106,7 @@ def test3():
     printList(p1)
     print("The second list is: ")
     printList(p2)
-    pMergedHead = mergeList(p1, p2)
+    pMergedHead = mergeList_iteratively(p1, p2)
     print('The Merged List is: ')
     printList(pMergedHead)
 
@@ -102,7 +121,7 @@ def test4():
     print("The second list is: ")
     p2 = None
     printList(p2)
-    pMergedHead = mergeList(p1, p2)
+    pMergedHead = mergeList_iteratively(p1, p2)
     print('The Merged List is: ')
     printList(pMergedHead)
 
@@ -113,7 +132,7 @@ def test5():
     printList(p1)
     print("The second list is: ")
     printList(p2)
-    pMergedHead = mergeList(p1, p2)
+    pMergedHead = mergeList_iteratively(p1, p2)
     print('The Merged List is: ')
     printList(pMergedHead)
 
