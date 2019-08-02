@@ -1,4 +1,8 @@
 
+'''
+参考：https://stackoverflow.com/questions/11587044/how-can-i-create-a-tree-for-huffman-encoding-and-decoding/42569875#42569875
+'''
+
 freq = [
     (8.167, 'a'), (1.492, 'b'), (2.782, 'c'), (4.253, 'd'),
     (12.702, 'e'),(2.228, 'f'), (2.015, 'g'), (6.094, 'h'),
