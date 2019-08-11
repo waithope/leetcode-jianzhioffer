@@ -10,6 +10,9 @@
 def numberOf1Between1AndN(n):
     '''
     参考博客：https://blog.csdn.net/yi_Afly/article/details/52012593
+    计算X在1-N出现的次数，X包括0：
+    https://www.cnblogs.com/cyjb/p/digitOccurrenceInRegion.html
+
     解题思路：把整数n看成两部分，rounds(轮次)和weight，weight是十进制中的
     0~9，weight从0加到9为一个轮次，再加1又会回到0进行第二个轮次。假设n=514,
     在循环开始前设置rounds=514，base=1(base，一个轮次1出现的次数)，先从最
@@ -41,6 +44,34 @@ def numberOf1Between1AndN(n):
         base *= 10
     return count
 
+def digitCount(n, x):
+    '''
+    x可以是0~9的任何数，不仅限于1。
+    注：x=0的情况要特殊处理，因为在1-n中，高位不会出现前导为0的情况，比如010，011，012等等
+    '''
+    if not isinstance(n, int) or n < 1:
+        return 0
+    count, base, rounds = 0, 1, n
+    while rounds > 0:
+        weight = rounds % 10
+        # 高位
+        high = rounds // 10
+        if x == 0:
+            if high:
+                high -= 1
+            else:
+                break
+        count += high * base
+        if weight > x:
+            count += base
+        elif weight == x:
+            count += (n % base) + 1
+
+        rounds //= 10
+        base *= 10
+    return count
+
+print(digitCount(26, 0))
 
 import unittest
 
