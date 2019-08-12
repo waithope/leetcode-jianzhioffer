@@ -74,7 +74,7 @@ def isMatch(self, s: str, p: str) -> bool:
             # p字符串当前位置字符不为'*'时的情况
             if p[i - 1] != '*':
                 matches[i][j] = (matches[i - 1][j - 1]
-                                    and (p[i - 1] == s[j - 1] or p[i - 1] == '.'))
+                                 and (p[i - 1] == s[j - 1] or p[i - 1] == '.'))
             else:
                 # p字符串当前字符为'*'时，且对前一个字符取0次
                 matches[i][j] = matches[i - 2][j]
